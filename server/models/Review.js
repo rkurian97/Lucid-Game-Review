@@ -10,7 +10,7 @@ const reviewSchema = new Schema(
       minlength: 1,
       maxlength: 280
     },
-    movieId: {
+    videoGameId: {
         type: String,
         required: true
     },
