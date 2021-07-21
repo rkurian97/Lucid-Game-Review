@@ -51,7 +51,7 @@ const Home = () => {
                             </div>
                             <div className="mb-6 text-center">
                                 <button
-                                    className="w-full px-4 py-2 font-bold text-white bg-blue-800 rounded-full hover:bg-blue-900 focus:outline-none focus:shadow-outline"
+                                    className="w-full px-4 py-2 font-bold text-white bg-gray-800 rounded-full hover:bg-blue-900 focus:outline-none focus:shadow-outline"
                                     type="button"
                                 >
                                     Sign Up
@@ -64,7 +64,7 @@ const Home = () => {
 
                     <div
                         className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-r-lg"
-                        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1590845947376-2638caa89309?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80')" }}
+                        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1614294149010-950b698f72c0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29udHJvbGxlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')" }}
                     ></div>
                 </div>
             </div>

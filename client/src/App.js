@@ -10,6 +10,7 @@ import Friends from "./pages/Friends";
 import FriendPosts from "./pages/FriendPosts";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 
 // import { Provider } from 'react-redux';
 // import store from './utils/GlobalState';
@@ -32,14 +33,15 @@ function App() {
       <Router>
         <div>
             <Nav/>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/friends" component={Friends} />
-              <Route exact path="/friendposts" component={FriendPosts} />
-              <Route component={NoMatch}/>
-            </Switch>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/signup" component={SignUp} />
+                <Route exact path="/friends" component={Friends} />
+                <Route exact path="/friendposts" component={FriendPosts} />
+                <Route component={NoMatch}/>
+              </Switch>
+            <Footer/>
         </div>
       </Router>
     </ApolloProvider>
