@@ -1,66 +1,71 @@
 import React from "react";
-import { LockClosedIcon } from '@heroicons/react/solid';
 
 const Login = () => {
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
-          <div>
-            <img
-              className="mx-auto h-12 w-auto"
-              src="./lucid-logo.svg"
-              alt="Workflow"
-            />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
-          </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
-            <input type="hidden" name="remember" defaultValue="true" />
-            <div className="rounded-md shadow-sm -space-y-px">
-              <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Email address
-                </label>
-                <input
-                  id="email-address"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Email address"
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Password"
-                />
-              </div>
-            </div>
-  
-            <div>
-              <button
-                type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                  <LockClosedIcon className="h-5 w-5 text-indigo-600 group-hover:text-indigo-900" aria-hidden="true" />
-                </span>
-                Sign in
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    );
+  return (
+		<div className="container mx-auto">
+			<div className="flex justify-center px-6 my-12">
+
+				<div className="w-full xl:w-3/4 lg:w-11/12 flex">
+
+					<div
+						className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg"
+						style={{backgroundImage: "url('https://images.unsplash.com/photo-1590845947376-2638caa89309?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80')"}}
+					></div>
+
+					<div className="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
+          <img
+                className="mx-auto h-12 w-auto"
+                src="./lucid-logo.svg"
+                alt="Workflow"
+              />
+						<h3 className="pt-4 text-2xl text-center">Welcome Back!</h3>
+						<form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+							<div className="mb-4">
+								<label className="block mb-2 text-sm font-bold text-gray-700" for="email">
+									Email
+								</label>
+								<input
+									className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+									id="email"
+									type="text"
+									placeholder="Email"
+								/>
+							</div>
+							<div className="mb-4">
+								<label className="block mb-2 text-sm font-bold text-gray-700" for="password">
+									Password
+								</label>
+								<input
+									className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+									id="password"
+									type="password"
+									placeholder="**********"
+								/>
+								
+							</div>
+							<div className="mb-6 text-center">
+								<button
+									className="w-full px-4 py-2 font-bold text-white bg-blue-800 rounded-full hover:bg-blue-900 focus:outline-none focus:shadow-outline"
+									type="button"
+								>
+									Sign In
+								</button>
+							</div>
+							<hr className="mb-6 border-t" />
+							<div className="text-center">
+								<a
+									className="inline-block text-sm text-red-600 align-baseline hover:text-red-700"
+									href="./register.html"
+								>
+									Create an Account!
+								</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+  );
 };
 
 export default Login;
