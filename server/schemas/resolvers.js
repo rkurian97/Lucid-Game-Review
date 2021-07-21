@@ -28,6 +28,9 @@ const resolvers = {
           .populate('friends')
           .populate('reviews');
       },
+      allreviews: async (parent) => {
+        return Review.find().sort({ createdAt: -1 });
+      },
       reviews: async (parent, { username }) => {
         const params = username ? { username } : {};
         return Review.find(params).sort({ createdAt: -1 });
@@ -75,10 +78,48 @@ const resolvers = {
   
         throw new AuthenticationError('You need to be logged in!');
       },
-      addComment: async (parent, { reviewId, commentBody }, context) => {
+      updateReview: async (parent, {reviewID, reviewText, rating}, context) => {
+
+        if (context.user) {
+          await User.findByIdAndUpdate(
+            { _id: context.user._id },
+            { $pull: { reviews: review._id } },
+            { new: true }
+          );
+
+          const updatedReview = await Review.findOneAndUpdate(
+            {_id: reviewID},
+            { reviewText: reviewText, rating: rating, username: context.user.username },
+            { new: true, runValidators: true }
+          );
+  
+          return updatedReview;
+        }
+  
+        throw new AuthenticationError('You need to be logged in!');
+      },
+      deleteReview: async (parent, {reviewID}, context) => {
+        if (context.user) {
+          const deletedReview = await Review.findOneAndDelete(
+            {_id: reviewID}
+          );
+          
+          console.log(deletedReview)
+          await User.findByIdAndUpdate(
+            { _id: context.user._id },
+            { $pull: { reviews: deletedReview._id } },
+            { new: true }
+          );
+  
+          return deletedReview;
+        }
+  
+        throw new AuthenticationError('You need to be logged in!');
+      },
+      addComment: async (parent, { reviewID, commentBody }, context) => {
         if (context.user) {
           const updatedReview = await Review.findOneAndUpdate(
-            { _id: reviewId },
+            { _id: reviewID },
             { $push: { comments: { commentBody, username: context.user.username } } },
             { new: true, runValidators: true }
           );

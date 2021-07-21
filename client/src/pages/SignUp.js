@@ -16,7 +16,7 @@ const Home = () => {
                         <h3 className="pt-4 text-2xl text-center">Welcome!</h3>
                         <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
                             <div className="mb-4">
-                                <label className="block mb-2 text-sm font-bold text-gray-700" for="username">
+                                <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="username">
                                     Username
                                 </label>
                                 <input
@@ -27,7 +27,7 @@ const Home = () => {
                                 />
                             </div>
                             <div className="mb-4">
-                                <label className="block mb-2 text-sm font-bold text-gray-700" for="email">
+                                <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="email">
                                     Email
                                 </label>
                                 <input
