@@ -50,7 +50,10 @@ const typeDefs = gql`
         updateReview(reviewID: ID, reviewText: String!, rating: Int!): Review
         deleteReview(reviewID: ID): Review
         addComment(reviewID: ID!, commentBody: String!): Review
+        updateComment(reviewID: ID!, commentID: ID!, commentBody: String!): Review
+        deleteComment(reviewID: ID!, commentID: ID!): Review
         addFriend(friendId: ID!): User
+        deleteFriend(friendId: ID!): User
       }
 `
 module.exports = typeDefs;
