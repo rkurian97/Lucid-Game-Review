@@ -1,47 +1,94 @@
 import React from "react";
 
+import { useMutation } from '@apollo/react-hooks';
+import { DELETE_REVIEW } from "../utils/mutations";
+
+
+import Auth from '../utils/auth';
+
 const ReviewCard = (props) => {
-    console.log('hit')
+    const [removeReview] = useMutation(DELETE_REVIEW);
+
+    if (props.profile){
+        console.log('why')
+    }
+
+    const deleteReview = async() => {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+        if (!token) {
+            return false;
+        }
+        console.log(props.id)
+        try {
+            const { response } = await removeReview({
+                variables: {reviewID: props.id} 
+            });
+
+            if (!response.ok) {
+                throw new Error('something went wrong!');
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     return (
         //Parent Div
-            <div className="mt-3 md:p-8 p-2 bg-white">
+        <div className="mt-3 md:p-8 p-2 bg-white">
 
-                <img
-                    className="rounded-lg w-full"
-                    src="https://assets.nintendo.com/image/upload/ncom/en_US/games/switch/t/the-legend-of-zelda-breath-of-the-wild-switch/hero"
-                    alt="game"
-                />
+            <img
+                className="rounded-lg w-full"
+                src="https://assets.nintendo.com/image/upload/ncom/en_US/games/switch/t/the-legend-of-zelda-breath-of-the-wild-switch/hero"
+                alt="game"
+            />
 
 
-                <p className="text-red-500 font-semibold text-base mt-2">Rating: { props.rating }</p>
+            <p className="text-red-500 font-semibold text-base mt-2">Rating: {props.rating}</p>
 
-                <h1
-                    className="font-semibold text-gray-900 leading-none text-xl mt-1 capitalize"
-                >
-                    { props.gameTitle }
-                </h1>
+            <h1
+                className="font-semibold text-gray-900 leading-none text-xl mt-1 capitalize"
+            >
+                {props.gameTitle}
+            </h1>
 
-                <div className="max-w-full">
-                    <p className="text-base font-medium tracking-wide text-gray-600 mt-1">
-                        { props.reviewText }
-                    </p>
-                </div>
-                <div className="flex items-center space-x-2 mt-20">
-
-                    <img
-                        className="w-10 h-10 object-cover object-center rounded-full"
-                        src="https://www.freeiconspng.com/uploads/go-back--gallery-for--contact-person-icon-png-21.png"  
-                        alt="random user"
-                    />
-                    <div>
-
-                        <p className="text-gray-900 font-semibold">{ props.username }</p>
-                        <p className="text-gray-500 font-semibold text-sm">
-                            {props.createdAt}
-                        </p>
-                    </div>
-                </div>
+            <div className="max-w-full">
+                <p className="text-base font-medium tracking-wide text-gray-600 mt-1">
+                    {props.reviewText}
+                </p>
             </div>
+
+            {
+                props.profile
+                    ? (
+                        <div className='mt-3 self-auto'>
+                            <button onClick={deleteReview} className="uppercase p-3 flex items-center bg-red-500 text-blue-50 max-w-max shadow-sm hover:shadow-lg rounded-full w-12 h-12 ">
+                                <svg width="32" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32" style={{ transform: "rotate(360deg)" }}>
+                                    <path d="M12 12h2v12h-2z" fill="currentColor"></path><path d="M18 12h2v12h-2z" fill="currentColor"></path>
+                                    <path d="M4 6v2h2v20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8h2V6zm4 22V8h16v20z" fill="currentColor"></path>
+                                    <path d="M12 2h8v2h-8z" fill="currentColor"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    )
+                    : (
+                        <div className="flex items-center space-x-2 mt-20">
+
+                            <img
+                                className="w-10 h-10 object-cover object-center rounded-full"
+                                src="https://www.freeiconspng.com/uploads/go-back--gallery-for--contact-person-icon-png-21.png"
+                                alt="random user"
+                            />
+                            <div>
+
+                                <p className="text-gray-900 font-semibold">{props.username}</p>
+                                <p className="text-gray-500 font-semibold text-sm">
+                                    {props.createdAt}
+                                </p>
+                            </div>
+                        </div>
+                    )
+            }
+        </div>
     )
 }
 

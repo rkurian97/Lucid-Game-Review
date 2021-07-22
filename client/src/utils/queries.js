@@ -3,10 +3,26 @@ import gql from 'graphql-tag';
 export const QUERY_ME = gql`
   {
     me{
+      _id
+      username
+      email
+      reviews{
+        _id
+        reviewText
+        gameTitle
+        rating
+        createdAt
+        comments{
+          commentBody
+          createdAt
+        }
+      }
+      friends{
         _id
         username
-        email
       }
+      friendCount
+    }
   }
 `;
 

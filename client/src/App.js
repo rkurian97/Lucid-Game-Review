@@ -6,13 +6,13 @@ import  ApolloClient  from 'apollo-boost';
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import Friends from "./pages/Friends";
-import Profile from "./pages/Profile";
+import EditReview from "./pages/EditReview";
 import FriendPosts from "./pages/FriendPosts";
+import AddFriends from "./pages/AddFriends";
 import NoMatch from "./pages/NoMatch";
-
+import AddReview from './pages/AddReview'
 import Nav from "./components/Nav";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 
 // import { Provider } from 'react-redux';
 // import store from './utils/GlobalState';
@@ -39,12 +39,13 @@ function App() {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={SignUp} />
-                <Route exact path="/friends" component={Friends} />
-                <Route exact path="/profile" component={Profile} />
+                <Route exact path="/addReview" component={AddReview} />
+                <Route exact path="/editReview" component={EditReview} />
                 <Route exact path="/friendposts" component={FriendPosts} />
+                <Route exact path="/addFriends" component={AddFriends} />
                 <Route component={NoMatch}/>
               </Switch>
-            <Footer/>
+
         </>
       </Router>
     </ApolloProvider>

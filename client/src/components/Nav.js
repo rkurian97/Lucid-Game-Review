@@ -37,14 +37,14 @@ const Nav = () => {
                   </Link>
 
                   <Link
-                    to="/friends"
+                    to="/addFriends"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
-                    Friends
+                    Social
                   </Link>
 
                   <Link
-                    to="/profile"
+                    to="/addReview"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Profile

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Friends = () => {
+const AddFriends = () => {
     return (
         <div className="h-screen w-screen flex bg-gray-200">
             <aside
@@ -46,4 +46,4 @@ const Friends = () => {
     );
 };
 
-export default Friends;
+export default AddFriends;

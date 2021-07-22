@@ -37,3 +37,16 @@ export const ADD_REVIEW= gql`
         }
     }
 `
+
+export const DELETE_REVIEW= gql`
+    mutation deleteReview($reviewID: ID) {
+        deleteReview(reviewID: $reviewID) {
+            _id
+        reviewText
+        videoGameId
+        rating
+        username
+        createdAt
+        }
+    }
+`
