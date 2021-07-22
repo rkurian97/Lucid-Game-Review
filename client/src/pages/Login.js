@@ -20,9 +20,8 @@ const Login = () => {
 			const { data } = await login({
 				variables: { ...userFormData }
 			});
-			console.log(data);
+			console.log('hit')
 			Auth.login(data.login.token);
-			this.props.history.push("/")
 		} catch (err) {
 			console.error(err);
 		}

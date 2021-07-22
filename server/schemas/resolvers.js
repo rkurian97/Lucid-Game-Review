@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Review, Comment} = require('../models');
+const { User, Review} = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -172,11 +172,12 @@ const resolvers = {
       },
       deleteFriend: async (parent, { friendId }, context) => {
         if (context.user) {
+          console.log(friendId);
           const updatedUser = await User.findOneAndUpdate(
             { _id: context.user._id },
-            { $pull: { friends: friendId } },
+            { $pull: { friends: friendId  } },
             { new: true }
-          ).populate('friends');
+          );
   
           return updatedUser;
         }

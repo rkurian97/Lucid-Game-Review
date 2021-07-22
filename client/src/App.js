@@ -22,16 +22,16 @@ const client = new ApolloClient({
       headers: {
         authorization: token ? `Bearer ${token}` : ''
       }
-    })
+    });
   },
   uri: '/graphql',
-})
+});
 
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
+        <>
             <Nav/>
               <Switch>
                 <Route exact path="/" component={Home} />
@@ -42,7 +42,7 @@ function App() {
                 <Route component={NoMatch}/>
               </Switch>
             <Footer/>
-        </div>
+        </>
       </Router>
     </ApolloProvider>
   );

@@ -9,3 +9,20 @@ export const QUERY_ME = gql`
       }
   }
 `;
+
+export const QUERY_ALL_REVIEWS= gql`
+  query{
+    allreviews{
+      _id
+      reviewText
+      videoGameId
+      rating
+      username
+      createdAt
+      comments{
+        _id
+        commentBody
+      }
+    }
+  }
+`
