@@ -11,7 +11,7 @@ const ReviewSideMenu = () => {
                     <li className="hover:bg-gray-100">
                         <Link
                             to="/editReview"
-                            className="h-16 px-6 flex flex justify-center items-center w-full focus:text-orange-500">
+                            className="h-16 px-6 flex flex justify-center items-center w-full rounded-md text-sm font-medium text-xl text-red-500">
                             Posts
                         </Link>
                     </li>
@@ -19,7 +19,7 @@ const ReviewSideMenu = () => {
                     <li className="hover:bg-gray-100">
                         <Link
                             to="/addReview"
-                            className="h-16 px-6 flex flex justify-center items-center w-full focus:text-orange-500">
+                            className="h-16 px-6 flex flex justify-center items-center w-full text-sm font-medium text-xl text-red-500">
                             Add
 
                         </Link>

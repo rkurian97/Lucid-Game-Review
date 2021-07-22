@@ -24,6 +24,8 @@ const ReviewCard = (props) => {
                 variables: {reviewID: props.id} 
             });
 
+          window.location.reload()
+
             if (!response.ok) {
                 throw new Error('something went wrong!');
             }
@@ -34,10 +36,10 @@ const ReviewCard = (props) => {
 
     return (
         //Parent Div
-        <div className="mt-3 md:p-8 p-2 bg-white">
+        <div className="mt-4 ml-4 mb-5 md:p-8 p-2 bg-white max-h" >
 
             <img
-                className="rounded-lg w-full"
+                className="rounded-lg w-8/12"
                 src="https://assets.nintendo.com/image/upload/ncom/en_US/games/switch/t/the-legend-of-zelda-breath-of-the-wild-switch/hero"
                 alt="game"
             />
@@ -46,13 +48,13 @@ const ReviewCard = (props) => {
             <p className="text-red-500 font-semibold text-base mt-2">Rating: {props.rating}</p>
 
             <h1
-                className="font-semibold text-gray-900 leading-none text-xl mt-1 capitalize"
+                className="font-semibold text-gray-900 leading-none text-l mt-1 capitalize"
             >
                 {props.gameTitle}
             </h1>
 
-            <div className="max-w-full">
-                <p className="text-base font-medium tracking-wide text-gray-600 mt-1">
+            <div className="max-w-5/12">
+                <p className="text-base font-small tracking-wide text-gray-600 mt-1">
                     {props.reviewText}
                 </p>
             </div>

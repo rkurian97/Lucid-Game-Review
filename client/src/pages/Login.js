@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useMutation } from '@apollo/react-hooks';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from "../utils/auth";
+import { Link } from "react-router-dom";
 
 const Login = () => {
 	const [userFormData, setUserFormData] = useState({ email: '', password: '' });
@@ -88,12 +89,12 @@ const Login = () => {
 							</div>
 							<hr className="mb-6 border-t" />
 							<div className="text-center">
-								<a
+								<Link
 									className="inline-block text-sm text-red-600 align-baseline hover:text-red-700"
-									href="./register.html"
+									to="/signup"
 								>
 									Create an Account!
-								</a>
+								</Link>
 							</div>
 						</form>
 					</div>

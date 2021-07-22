@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from '@apollo/react-hooks';
 import ReviewSideMenu from "../components/ReviewSideMenu";
-
+import { Redirect } from "react-router";
 import { ADD_REVIEW } from '../utils/mutations';
 
 import Auth from '../utils/auth';
@@ -25,7 +25,6 @@ const AddReview = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         const token = Auth.loggedIn() ? Auth.getToken() : null;
-        console.log('hit')
         if (!token) {
           return false;
         }
@@ -36,10 +35,9 @@ const AddReview = () => {
                 variables: { ...reviewFormData, videoGameId: '342' },
             });
 
-            if (!data.ok) {
-                throw new Error('something went wrong!');
-            }
-        
+            console.log('DATAAAA after saving', data)
+
+            return <Redirect to="/" />
         } catch (err) {
             console.error(err);
         }

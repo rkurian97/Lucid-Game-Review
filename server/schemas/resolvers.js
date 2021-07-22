@@ -28,7 +28,9 @@ const resolvers = {
           .populate('reviews');
       },
       allreviews: async (parent) => {
-        return Review.find().sort({ createdAt: -1 });
+        const allReviews = await Review.find({}).sort({ createdAt: -1 });
+        console.log('SHOULD HAVE ALL REVIEWS including new one!!!!', allReviews)
+        return allReviews
       },
       reviews: async (parent, { username }) => {
         const params = username ? { username } : {};
@@ -66,12 +68,15 @@ const resolvers = {
         if (context.user) {
           const review = await Review.create({ ...args, username: context.user.username });
   
-          await User.findByIdAndUpdate(
+         const updatedUser = await User.findByIdAndUpdate(
             { _id: context.user._id },
             { $push: { reviews: review._id } },
             { new: true }
           );
+          console.log('CONTEXT!!', context)
   
+          console.log('Review we just added', review)
+          console.log('updated user w new review', updatedUser)
           return review;
         }
   

@@ -14,6 +14,7 @@ import AddReview from './pages/AddReview'
 import Nav from "./components/Nav";
 // import Footer from "./components/Footer";
 
+import { StoreProvider } from "./utils/GlobalState";
 // import { Provider } from 'react-redux';
 // import store from './utils/GlobalState';
 
@@ -34,6 +35,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
+        <StoreProvider>
             <Nav/>
               <Switch>
                 <Route exact path="/" component={Home} />
@@ -45,7 +47,7 @@ function App() {
                 <Route exact path="/addFriends" component={AddFriends} />
                 <Route component={NoMatch}/>
               </Switch>
-
+          </StoreProvider>
         </>
       </Router>
     </ApolloProvider>

@@ -43,3 +43,30 @@ export const QUERY_ALL_REVIEWS= gql`
     }
   }
 `
+export const FIND_USER= gql`
+  query getSingleUser($username: String!) {
+    user(username: $username) {
+      _id
+      username
+    }
+  }
+`
+
+export const QUERY_MY_FRIENDS = gql`
+  query{
+    me{
+      _id
+      username
+      friends{
+        _id
+        username
+        reviews{
+          reviewText
+          createdAt
+          gameTitle
+        }
+      }
+      friendCount
+    }
+  }
+`;
