@@ -4,11 +4,15 @@ const dateFormat = require('../utils/dateFormat');
 
 const reviewSchema = new Schema(
   {
+    gameTitle:{
+      type: String,
+      required: 'You need to leave a title!',
+      minlength: 1
+    },
     reviewText: {
       type: String,
       required: 'You need to leave a review!',
-      minlength: 1,
-      maxlength: 280
+      minlength: 1
     },
     videoGameId: {
         type: String,

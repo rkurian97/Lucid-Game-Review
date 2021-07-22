@@ -18,7 +18,7 @@ const ReviewCard = (props) => {
                 <h1
                     className="font-semibold text-gray-900 leading-none text-xl mt-1 capitalize"
                 >
-                    The Legend of Zelda: Breath of the Wild
+                    { props.gameTitle }
                 </h1>
 
                 <div className="max-w-full">

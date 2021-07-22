@@ -17,6 +17,7 @@ const Home = () => {
                             (review, _index) => 
                                 <ReviewCard
                                     key={_index}
+                                    gameTitle={review.gameTitle}
                                     reviewText={review.reviewText}
                                     username={review.username}
                                     videoGameId= {review.videoGameId}

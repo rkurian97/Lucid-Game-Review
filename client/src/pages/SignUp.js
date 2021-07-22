@@ -1,6 +1,36 @@
-import React from "react";
+import React, {useState} from "react";
+import { useMutation } from '@apollo/react-hooks';
+import { ADD_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 const Home = () => {
+    // set initial form state
+    const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+    const [addUser] = useMutation(ADD_USER);
+    
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setUserFormData({ ...userFormData, [name]: value });
+    };
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            console.log(userFormData)
+            const { data } = await addUser({
+                variables: { ...userFormData },
+            });
+            Auth.login(data.addUser.token);
+        } catch (err) {
+            console.error(err);
+        }
+        setUserFormData({
+            username: '',
+            email: '',
+            password: '',
+        });
+    };
+
     return (
         <div className="container mx-auto">
             <div className="flex justify-center px-6 my-12">
@@ -14,7 +44,7 @@ const Home = () => {
                             alt="FWorkflow"
                         />
                         <h3 className="pt-4 text-2xl text-center">Welcome!</h3>
-                        <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+                        <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded" onSubmit={handleFormSubmit}>
                             <div className="mb-4">
                                 <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="username">
                                     Username
@@ -23,7 +53,10 @@ const Home = () => {
                                     className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                     id="username"
                                     type="text"
+                                    name='username'
                                     placeholder="Username"
+                                    onChange={handleInputChange}
+                                    required
                                 />
                             </div>
                             <div className="mb-4">
@@ -33,26 +66,32 @@ const Home = () => {
                                 <input
                                     className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                     id="email"
-                                    type="text"
+                                    name='email'
+                                    type="email"
                                     placeholder="Email"
+                                    onChange={handleInputChange}
+                                    required
                                 />
                             </div>
                             <div className="mb-4">
-                                <label className="block mb-2 text-sm font-bold text-gray-700" for="password">
+                                <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="password">
                                     Password
                                 </label>
                                 <input
                                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                     id="password"
+                                    name='password'
                                     type="password"
                                     placeholder="**********"
+                                    onChange={handleInputChange}
+                                    required
                                 />
-                            
+
                             </div>
                             <div className="mb-6 text-center">
                                 <button
                                     className="w-full px-4 py-2 font-bold text-white bg-gray-800 rounded-full hover:bg-blue-900 focus:outline-none focus:shadow-outline"
-                                    type="button"
+                                    type="submit"
                                 >
                                     Sign Up
                                 </button>

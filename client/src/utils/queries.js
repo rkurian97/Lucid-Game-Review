@@ -14,6 +14,7 @@ export const QUERY_ALL_REVIEWS= gql`
   query{
     allreviews{
       _id
+      gameTitle
       reviewText
       videoGameId
       rating

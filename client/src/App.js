@@ -7,8 +7,10 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Friends from "./pages/Friends";
+import Profile from "./pages/Profile";
 import FriendPosts from "./pages/FriendPosts";
 import NoMatch from "./pages/NoMatch";
+
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 
@@ -38,6 +40,7 @@ function App() {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={SignUp} />
                 <Route exact path="/friends" component={Friends} />
+                <Route exact path="/profile" component={Profile} />
                 <Route exact path="/friendposts" component={FriendPosts} />
                 <Route component={NoMatch}/>
               </Switch>

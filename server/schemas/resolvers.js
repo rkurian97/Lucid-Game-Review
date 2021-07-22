@@ -10,7 +10,6 @@ const resolvers = {
             .select('-__v -password')
             .populate('reviews')
             .populate('friends');
-  
           return userData;
         }
   
@@ -78,12 +77,12 @@ const resolvers = {
   
         throw new AuthenticationError('You need to be logged in!');
       },
-      updateReview: async (parent, {reviewID, reviewText, rating}, context) => {
+      updateReview: async (parent, {gameTitle, reviewID, reviewText, rating}, context) => {
 
         if (context.user) {
           const updatedReview = await Review.findOneAndUpdate(
             {_id: reviewID},
-            { reviewText: reviewText, rating: rating, username: context.user.username },
+            { gameTitle: gameTitle, reviewText: reviewText, rating: rating, username: context.user.username },
             { new: true, runValidators: true }
           );
   

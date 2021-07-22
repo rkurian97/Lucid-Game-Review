@@ -43,6 +43,13 @@ const Nav = () => {
                     Friends
                   </Link>
 
+                  <Link
+                    to="/profile"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Profile
+                  </Link>
+
                   <div className="text-center">
                     {Auth.loggedIn() ? (
                       <>

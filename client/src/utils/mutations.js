@@ -23,3 +23,17 @@ export const ADD_USER = gql`
         }
     }
 `;
+
+export const ADD_REVIEW= gql`
+    mutation addReview($gameTitle: String, $reviewText: String!, $videoGameId: String!, $rating: Int!) {
+        addReview(gameTitle:$gameTitle, reviewText:$reviewText, videoGameId:$videoGameId,  rating:$rating) {
+            _id
+        gameTitle
+        reviewText
+        videoGameId
+        rating
+        username
+        createdAt
+        }
+    }
+`
