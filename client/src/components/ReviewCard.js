@@ -6,29 +6,23 @@ import { DELETE_REVIEW } from "../utils/mutations";
 
 import Auth from '../utils/auth';
 
-const ReviewCard = (props) => {
+const ReviewCard = ({gameTitle, reviewText, username, videoGameId, rating, createdAt, profile, id, refetch}) => {
     const [removeReview] = useMutation(DELETE_REVIEW);
 
-    if (props.profile){
-        console.log('why')
-    }
-
     const deleteReview = async() => {
+        //checking if user is logged in
         const token = Auth.loggedIn() ? Auth.getToken() : null;
         if (!token) {
             return false;
         }
-        console.log(props.id)
+
         try {
-            const { response } = await removeReview({
-                variables: {reviewID: props.id} 
+            //removing Review from Database
+            await removeReview({
+                variables: {reviewID: id} 
             });
-
-          window.location.reload()
-
-            if (!response.ok) {
-                throw new Error('something went wrong!');
-            }
+            //Trying to loop through user reviews in user data from useQuery and change it causing parent component to rerender. 
+            refetch();
         } catch (err) {
             console.error(err);
         }
@@ -45,22 +39,22 @@ const ReviewCard = (props) => {
             />
 
 
-            <p className="text-red-500 font-semibold text-base mt-2">Rating: {props.rating}</p>
+            <p className="text-red-500 font-semibold text-base mt-2">Rating: {rating}</p>
 
             <h1
                 className="font-semibold text-gray-900 leading-none text-l mt-1 capitalize"
             >
-                {props.gameTitle}
+                {gameTitle}
             </h1>
 
             <div className="max-w-5/12">
                 <p className="text-base font-small tracking-wide text-gray-600 mt-1">
-                    {props.reviewText}
+                    {reviewText}
                 </p>
             </div>
 
             {
-                props.profile
+                profile
                     ? (
                         <div className='mt-3 self-auto'>
                             <button onClick={deleteReview} className="uppercase p-3 flex items-center bg-red-500 text-blue-50 max-w-max shadow-sm hover:shadow-lg rounded-full w-12 h-12 ">
@@ -82,9 +76,9 @@ const ReviewCard = (props) => {
                             />
                             <div>
 
-                                <p className="text-gray-900 font-semibold">{props.username}</p>
+                                <p className="text-gray-900 font-semibold">{username}</p>
                                 <p className="text-gray-500 font-semibold text-sm">
-                                    {props.createdAt}
+                                    {createdAt}
                                 </p>
                             </div>
                         </div>

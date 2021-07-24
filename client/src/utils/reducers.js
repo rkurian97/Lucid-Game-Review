@@ -1,14 +1,12 @@
 import { useReducer } from "react";
 import {
-    ADD_FRIENDS,
-    // ADD_REVIEWS,
-    // DELETE_FRIENDS,
-    DELETE_REVIEWS
+    ADD_REVIEWS,
+    DELETE_REVIEWS,
 } from "./actions";
 
 export const reducer = (state, action) => {
     switch (action.type) {
-        case ADD_FRIENDS:
+        case ADD_REVIEWS:
             return {
                 ...state,
                 friends: [...state.friends, action.friends]

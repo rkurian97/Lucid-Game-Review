@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import ReviewCard from "../components/ReviewCard";
 
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_ALL_REVIEWS } from "../utils/queries";
 
 const Home = () => {
-    const [reviews, setData] = useState([])
+    const { loading, data } = useQuery(QUERY_ALL_REVIEWS)
 
-    const { data } = useQuery(QUERY_ALL_REVIEWS)
-    console.log(data)
-        
-   
+    useEffect(()=> {
+
+    }, [])
+
+    if(loading){
+        return <h1>....Loading</h1>
+    }
     return (
         <div className="bg-gray-200 h-screen">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 bg-gray-200">
                     {
-                        reviews && reviews.map(
+                        data && data.allreviews.map(
                             (review, _index) => 
                                 <ReviewCard
                                     key={_index}
