@@ -10,7 +10,6 @@ const AddFriends = () => {
 
     const { data: data2, refetch } = useQuery(QUERY_MY_FRIENDS);
     const userData = data2?.me.friends || {};
-    console.log(userData)
 
     const [searchInput, setSearchInput] = useState('');
 
