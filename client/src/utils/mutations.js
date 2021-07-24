@@ -24,7 +24,7 @@ export const ADD_USER = gql`
     }
 `;
 
-export const ADD_REVIEW= gql`
+export const ADD_REVIEW = gql`
     mutation addReview($gameTitle: String, $reviewText: String!, $videoGameId: String!, $rating: Int!) {
         addReview(gameTitle:$gameTitle, reviewText:$reviewText, videoGameId:$videoGameId,  rating:$rating) {
             _id
@@ -38,7 +38,7 @@ export const ADD_REVIEW= gql`
     }
 `
 
-export const DELETE_REVIEW= gql`
+export const DELETE_REVIEW = gql`
     mutation deleteReview($reviewID: ID) {
         deleteReview(reviewID: $reviewID) {
             _id
@@ -49,4 +49,31 @@ export const DELETE_REVIEW= gql`
         createdAt
         }
     }
+`
+
+export const ADD_FRIEND = gql`
+    mutation addFriend($friendId: ID!) {
+        addFriend(friendId: $friendId) {
+        _id
+        username
+        friendCount
+        friends {
+            _id
+            username
+        }
+        }
+    }
+`
+
+export const DELETE_FRIEND = gql`
+mutation deleteFriend($friendId: ID!) {
+    deleteFriend(friendId: $friendId) {
+      _id
+      username
+      friendCount
+      friends {
+        _id
+      }
+    }
+  }
 `

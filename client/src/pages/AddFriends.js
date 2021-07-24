@@ -48,7 +48,7 @@ const AddFriends = () => {
                         </button>
                     </form>
                     {
-                        data?.user && <FriendCard username={data.user.username} id={data.user._id} search={true} refetch={refetch} />
+                        data?.user && <FriendCard username={data.user.username} id={data.user._id} refetch={refetch} search={true}  />
                     }
                 </div>
 
@@ -59,8 +59,9 @@ const AddFriends = () => {
                                 <FriendCard
                                     key={_index}
                                     username={friend.username}
-                                    id={friend.id}
+                                    id={friend._id}
                                     refetch={refetch}
+                                    search={false}
                                 />
                         )
                     }
