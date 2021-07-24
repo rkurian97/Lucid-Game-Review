@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from '@apollo/react-hooks';
 import ReviewSideMenu from "../components/ReviewSideMenu";
-import { Redirect } from "react-router";
+// import { Redirect } from "react-router";
 import { ADD_REVIEW } from '../utils/mutations';
 
 import Auth from '../utils/auth';
@@ -37,7 +37,7 @@ const AddReview = () => {
 
             console.log('DATAAAA after saving', data)
 
-            return <Redirect to="/" />
+            return
         } catch (err) {
             console.error(err);
         }

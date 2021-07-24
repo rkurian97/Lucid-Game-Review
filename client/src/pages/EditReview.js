@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React from "react";
 import { useQuery } from '@apollo/react-hooks';
 import ReviewSideMenu from "../components/ReviewSideMenu";
 import { QUERY_ME } from "../utils/queries";
@@ -6,6 +6,7 @@ import ReviewCard from "../components/ReviewCard";
 
 const EditReview = () => {
     const { data, refetch } = useQuery(QUERY_ME);
+    console.log(data)
     
     return (
         <div className="h-screen w-screen bg-gray-200">

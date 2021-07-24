@@ -9,7 +9,6 @@ const FriendPosts =  () => {
     const userData = data?.me.friends || {};
     console.log(userData)
 
-
     return (
         <div className="h-screen w-screen flex bg-gray-200">
             <SocialSideMenu />
