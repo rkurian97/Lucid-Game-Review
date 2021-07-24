@@ -29,7 +29,6 @@ const resolvers = {
       },
       allreviews: async (parent) => {
         const allReviews = await Review.find({}).sort({ createdAt: -1 });
-        console.log('SHOULD HAVE ALL REVIEWS including new one!!!!', allReviews)
         return allReviews
       },
       reviews: async (parent, { username }) => {

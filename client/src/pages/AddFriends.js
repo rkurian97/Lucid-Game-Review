@@ -8,16 +8,13 @@ import SocialSideMenu from "../components/SocialSideMenu";
 function AddFriends() {
     const [searchedFriend] = useState([]);
     const [searchInput, setSearchInput] = useState('');
-
+   
     useEffect(() => {
-        console.log(searchedFriend)
       },[searchedFriend])
 
     const [ search, {data}] = useLazyQuery(FIND_USER, {
         variables: { username: searchInput }
-      });
-
-      console.log('Data from lazy load!!', data)
+    });
 
     // const handleFormSubmit= async(event)  =>{
     //     event.preventDefault()
@@ -35,8 +32,6 @@ function AddFriends() {
         e.preventDefault()
         return search()
     }
-
-    console.log( 'searchedFriend!!!!!', searchedFriend)
 
     return (
         <div className="h-screen w-screen flex bg-gray-200">
@@ -63,7 +58,7 @@ function AddFriends() {
                             <FriendCard username={data.user.username} id={data.user._id} search={true}/>
                         )
                         :(
-                            <p></p>
+                            null
                         )
                     }
                 </div>

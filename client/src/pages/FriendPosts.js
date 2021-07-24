@@ -8,6 +8,8 @@ const FriendPosts =  () => {
     const { data } = useQuery(QUERY_MY_FRIENDS);
     const userData = data?.me.friends || {};
     console.log(userData)
+
+
     return (
         <div className="h-screen w-screen flex bg-gray-200">
             <SocialSideMenu />

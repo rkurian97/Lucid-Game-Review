@@ -132,16 +132,23 @@ const Nav = () => {
                   Home
                 </Link>
 
-                <Link
-                  to="/friends"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Friends
-                </Link>
-
 
                 {Auth.loggedIn() ? (
                   <>
+
+                    <Link
+                      to="/addFriends"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                      Social
+                    </Link>
+
+                    <Link
+                      to="/addReview"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Profile
+                    </Link>
                     <a href="/" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" onClick={logout}>
                       Logout
                     </a>
@@ -149,7 +156,6 @@ const Nav = () => {
                 ) : (
                   <>
                     <Link to="/login" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Login</Link>
-                    <Link to="/signup" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Signup</Link>
                   </>
                 )}
 
