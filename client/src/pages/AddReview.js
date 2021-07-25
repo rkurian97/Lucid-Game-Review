@@ -34,6 +34,11 @@ const AddReview = () => {
         }
     }
 
+    const handleImageClick= async (e)=>{
+        await setSelectedVideoGame(e.target.src)
+        console.log(selectedVideoGame)
+    }
+
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -58,9 +63,9 @@ const AddReview = () => {
     };
 
     return (
-        <div className=" h-screen w-screen flex bg-gray-200">
+        <div className="h-screen w-screen flex bg-gray-200">
             <ReviewSideMenu/>
-            <div className='w-8/12 mr-auto ml-auto'>
+            <div className='w-2/5 mr-auto ml-auto full'>
                 <div>
                     <form onSubmit={handleVideoGameQuery}className="h-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative mt-3 ">
                         <input
@@ -76,9 +81,9 @@ const AddReview = () => {
                         </button>
                     </form>
                 </div>
-                <div className='grid grid-cols-5 gap-4'>
+                <div>
                    { 
-                    data?.videogames && <div className='mt-5'> <img src={data.videogames.background_image}></img> </div>
+                    data?.videogames &&  <img alt='video game query' className="mt-5 mr-auto ml-auto rounded-xl" src={data.videogames.image} onClick={handleImageClick}></img>
                    }
                 </div>
             </div>
@@ -120,7 +125,9 @@ const AddReview = () => {
                             </div>
 
                             <div className="flex p-1">
-                                <button type="submit" className="p-3 bg-gray-800 text-white hover:bg-blue-900">Submit</button>
+                               {
+                                   selectedVideoGame && <button type="submit" className="p-3 bg-gray-800 text-white hover:bg-blue-900">Submit</button>
+                               } 
                             </div>
                         </form>
                     </div>

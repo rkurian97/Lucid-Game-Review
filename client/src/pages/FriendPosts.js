@@ -8,7 +8,7 @@ const FriendPosts = () => {
     const { data } = useQuery(QUERY_MY_FRIENDS);
     console.log(data)
     const userData = data?.me.friends || {};
-    
+    console.log(userData)
     useEffect(() => {
     }, [])
 

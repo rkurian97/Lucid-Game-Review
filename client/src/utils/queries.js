@@ -8,6 +8,7 @@ export const QUERY_ME = gql`
       email
       reviews{
         _id
+        videoGameId
         reviewText
         gameTitle
         rating
@@ -64,6 +65,7 @@ export const QUERY_MY_FRIENDS = gql`
           reviewText
           createdAt
           gameTitle
+          videoGameId
         }
       }
       friendCount

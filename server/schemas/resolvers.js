@@ -47,7 +47,9 @@ const resolvers = {
       },
       videogames: async (parent, {query})=>{
         const response = await axios.get(`https://api.rawg.io/api/games/${query}?key=${process.env.API_KEY}`)
+        console.log(response.data.background_image)
         let obj={image: response.data.background_image}
+        console.log(obj)
         return(obj)
       }
     },

@@ -52,7 +52,7 @@ const ReviewCard = ({ gameTitle, reviewText, username, videoGameId, rating, crea
 
             <img
                 className="rounded-lg w-8/12"
-                src="https://assets.nintendo.com/image/upload/ncom/en_US/games/switch/t/the-legend-of-zelda-breath-of-the-wild-switch/hero"
+                src={videoGameId}
                 alt="game"
             />
 
