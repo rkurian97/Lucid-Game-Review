@@ -70,3 +70,11 @@ export const QUERY_MY_FRIENDS = gql`
     }
   }
 `;
+
+export const QUERY_VIDEOGAMES= gql `
+  query getVideoGames($query: String!) {
+    videogames(query: $query) {
+          image
+    }
+  }
+`

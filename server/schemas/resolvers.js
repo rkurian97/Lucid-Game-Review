@@ -46,13 +46,9 @@ const resolvers = {
         return Review.findOne({ _id });
       },
       videogames: async (parent, {query})=>{
-        let results=[];
-        const response = await axios.get(`https://api.rawg.io/api/platforms?key=${process.env.API_KEY}?search_exact=${query}&exclude_additions=true`)
-        for(const videogame of response.data.results){
-          let obj={image: videogame.image_background}
-          results.push(obj)
-        }
-        return(results)
+        const response = await axios.get(`https://api.rawg.io/api/games/${query}?key=${process.env.API_KEY}`)
+        let obj={image: response.data.background_image}
+        return(obj)
       }
     },
   

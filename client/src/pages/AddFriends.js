@@ -25,6 +25,7 @@ const AddFriends = () => {
             variables: { username: searchInput },
             suspend: false
         });
+        
     }
 
 

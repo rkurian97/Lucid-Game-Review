@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import axios from 'axios';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useLazyQuery} from '@apollo/react-hooks';
 import ReviewSideMenu from "../components/ReviewSideMenu";
-// import { Redirect } from "react-router";
 import { ADD_REVIEW } from '../utils/mutations';
-import env from "react-dotenv";
-
-//d46e0bc3087945ba9a31595a9d85d823
+import { QUERY_VIDEOGAMES } from "../utils/queries";
 
 import Auth from '../utils/auth';
 
@@ -15,24 +11,27 @@ const AddReview = () => {
     const [addReview] = useMutation(ADD_REVIEW);
     const [selectedVideoGame, setSelectedVideoGame]= useState('')
     const [searchInput, setSearchInput] = useState('');
-
+    const [search, {data}] = useLazyQuery(QUERY_VIDEOGAMES);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setReviewFormData({ ...reviewFormData, [name]: value });
-        console.log(reviewFormData)
     };
 
     const handleNumberChange = (event) => {
         const { name, value } = event.target;
         setReviewFormData({ ...reviewFormData, [name]: parseInt(value) });
-
     };
 
     const handleVideoGameQuery= async (e)=>{
         e.preventDefault()
-        console.log(searchInput)
-        
+        search({
+            variables: { query: searchInput },
+            suspend: false
+        });
+        if(data){
+            console.log(data)
+        }
     }
 
     const handleFormSubmit = async (event) => {
@@ -43,13 +42,9 @@ const AddReview = () => {
         }
 
         try {
-            console.log(reviewFormData)
-            const { data } = await addReview({
+            await addReview({
                 variables: { ...reviewFormData, videoGameId: selectedVideoGame },
             });
-
-            console.log('DATAAAA after saving', data)
-
             return
         } catch (err) {
             console.error(err);
@@ -65,20 +60,27 @@ const AddReview = () => {
     return (
         <div className=" h-screen w-screen flex bg-gray-200">
             <ReviewSideMenu/>
-            <div className='w-4/12 mr-auto ml-auto'>
-                <form onSubmit={handleVideoGameQuery}className="h-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative mt-3 ">
-                    <input
-                        onChange={(e) => setSearchInput(e.target.value)}
-                        type="text" placeholder="Search"
-                        className="appearance-none w-full outline-none focus:outline-none active:outline-none">
-                    </input>
-                    <button type="submit" className="ml-1 outline-none focus:outline-none active:outline-none">
-                        <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                            viewBox="0 0 24 24" className="w-6 h-6">
-                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                    </button>
-                </form>
+            <div className='w-8/12 mr-auto ml-auto'>
+                <div>
+                    <form onSubmit={handleVideoGameQuery}className="h-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative mt-3 ">
+                        <input
+                            onChange={(e) => setSearchInput(e.target.value)}
+                            type="text" placeholder="Search"
+                            className="appearance-none w-full outline-none focus:outline-none active:outline-none">
+                        </input>
+                        <button type="submit" className="ml-1 outline-none focus:outline-none active:outline-none">
+                            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                viewBox="0 0 24 24" className="w-6 h-6">
+                                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+                <div className='grid grid-cols-5 gap-4'>
+                   { 
+                    data?.videogames && <div className='mt-5'> <img src={data.videogames.background_image}></img> </div>
+                   }
+                </div>
             </div>
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-5">
                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
