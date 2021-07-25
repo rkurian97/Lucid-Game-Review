@@ -8,7 +8,6 @@ const Footer = () => {
                     <div className="mt-2"> Contributed by Rohith Kurian </div>
                 </div>
             </div>
-            
         </footer>
     )
 }

@@ -47,7 +47,7 @@ const Nav = () => {
                         </Link>
 
                         <Link
-                          to="/addReview"
+                          to="/editReview"
                           className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                         >
                           Profile
@@ -144,7 +144,7 @@ const Nav = () => {
                     </Link>
 
                     <Link
-                      to="/addReview"
+                      to="/editReview"
                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
                       Profile

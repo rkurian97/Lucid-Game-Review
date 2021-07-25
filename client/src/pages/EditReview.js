@@ -13,7 +13,7 @@ const EditReview = () => {
             <div className="flex">
                 <ReviewSideMenu />
                 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 bg-gray-200">
+                <div className="grid grid-cols-1 w-full md:grid-cols-3 gap-3 bg-gray-200">
                         {
                             data && data.me.reviews.map(
                                 (review, _index) => 

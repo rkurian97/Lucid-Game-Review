@@ -1,6 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Review} = require('../models');
 const { signToken } = require('../utils/auth');
+const axios = require('axios');
 
 const resolvers = {
     Query: {
@@ -43,6 +44,15 @@ const resolvers = {
       },
       review: async (parent, { _id }) => {
         return Review.findOne({ _id });
+      },
+      videogames: async (parent, {query})=>{
+        let results=[];
+        const response = await axios.get(`https://api.rawg.io/api/platforms?key=${process.env.API_KEY}?search_exact=${query}&exclude_additions=true`)
+        for(const videogame of response.data.results){
+          let obj={image: videogame.image_background}
+          results.push(obj)
+        }
+        return(results)
       }
     },
   
