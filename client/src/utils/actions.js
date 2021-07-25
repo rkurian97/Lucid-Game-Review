@@ -1,2 +1,0 @@
-export const ADD_REVIEWS = "ADD_REVIEWS";
-export const DELETE_REVIEWS = "DELETE_REVIEWS";

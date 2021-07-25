@@ -11,7 +11,7 @@ const SocialSideMenu = () => {
                     <li className="hover:bg-gray-100">
                         <Link
                             to="/addFriends"
-                            className="h-16 px-6 flex flex justify-center items-center w-full px-3 py-2 rounded-md text-sm font-medium text-xl text-red-500">
+                            className="h-16 px-6 flex flex text-sm font-medium text-xl bg-transparent text-red-500 hover:bg-red-500 hover:text-white hover:border-transparent transition ease-in duration-200">
                             Follow
                         </Link>
                     </li>
@@ -19,7 +19,7 @@ const SocialSideMenu = () => {
                     <li className="hover:bg-gray-100">
                         <Link
                             to="/friendposts"
-                            className="h-16 px-6 flex flex justify-center items-center w-full rounded-md text-sm font-medium text-xl text-red-500">
+                            className="h-16 px-6 flex flex text-sm font-medium text-xl bg-transparent text-red-500 hover:bg-red-500 hover:text-white hover:border-transparent transition ease-in duration-200 self-center">
                             Posts
 
                         </Link>

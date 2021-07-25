@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
-
 import Auth from '../utils/auth';
 
 const Nav = () => {
-
+  //state for mobile menu
   const [isOpen, setIsOpen] = useState(false);
 
+  // logout function
   const logout = event => {
     event.preventDefault();
     Auth.logout();
@@ -19,19 +19,20 @@ const Nav = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <Link to='/' className="flex-shrink-0 text-white block px-3 py-2 rounded-md text-base font-medium">
+              <a href='/' className="flex-shrink-0 text-white block px-3 py-2 rounded-md text-base font-medium">
                 <img
                   className="h-8 w-8 ml-auto mr-auto"
                   src="./lucid-logo.svg"
                   alt="Workflow"
                 />
                 Lucid Game Review
-              </Link>
+              </a>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
                   <a
                     href="/"
                     className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
+          
                   >
                     Home
                   </a>
@@ -47,7 +48,7 @@ const Nav = () => {
                         </Link>
 
                         <Link
-                          to="/editReview"
+                          to="/addReview"
                           className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                         >
                           Profile
@@ -125,12 +126,12 @@ const Nav = () => {
           {(ref) => (
             <div className="md:hidden" id="mobile-menu">
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <Link
-                  to="/"
+                <a
+                  href="/"
                   className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Home
-                </Link>
+                </a>
 
 
                 {Auth.loggedIn() ? (

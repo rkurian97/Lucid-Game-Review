@@ -45,11 +45,11 @@ const resolvers = {
       review: async (parent, { _id }) => {
         return Review.findOne({ _id });
       },
+      // USing this query to hit API from the backend, because on front end confronted cors policy errors
       videogames: async (parent, {query})=>{
+        
         const response = await axios.get(`https://api.rawg.io/api/games/${query}?key=${process.env.API_KEY}`)
-        console.log(response.data.background_image)
         let obj={image: response.data.background_image}
-        console.log(obj)
         return(obj)
       }
     },
@@ -86,10 +86,7 @@ const resolvers = {
             { $push: { reviews: review._id } },
             { new: true }
           );
-          console.log('CONTEXT!!', context)
-  
-          console.log('Review we just added', review)
-          console.log('updated user w new review', updatedUser)
+
           return review;
         }
   
@@ -142,7 +139,6 @@ const resolvers = {
       updateComment: async (parent, {reviewID, commentID, commentBody}, context) => {
 
         if (context.user) {
-          console.log(commentID);
           await Review.findByIdAndUpdate(
             { _id: reviewID },
             { $pull: { comments: {_id: commentID} } }
@@ -162,13 +158,11 @@ const resolvers = {
       deleteComment: async (parent, {reviewID, commentID, commentBody}, context) => {
 
         if (context.user) {
-          console.log(commentID);
           const updatedReview= await Review.findByIdAndUpdate(
             { _id: reviewID },
             { $pull: { comments: commentID } },
             { new: true }
           );
-          console.log(updatedReview)
           return updatedReview;
         }
   
@@ -189,7 +183,6 @@ const resolvers = {
       },
       deleteFriend: async (parent, { friendId }, context) => {
         if (context.user) {
-          console.log(friendId);
           const updatedUser = await User.findOneAndUpdate(
             { _id: context.user._id },
             { $pull: { friends: friendId  } },

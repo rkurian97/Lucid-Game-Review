@@ -10,19 +10,18 @@ const ReviewSideMenu = () => {
                 <ul>
                     <li className="hover:bg-gray-100">
                         <Link
-                            to="/editReview"
-                            className="h-16 px-6 flex flex justify-center items-center w-full rounded-md text-sm font-medium text-xl text-red-500">
-                            Posts
-                        </Link>
-                    </li>
-
-                    <li className="hover:bg-gray-100">
-                        <Link
                             to="/addReview"
-                            className="h-16 px-6 flex flex justify-center items-center w-full text-sm font-medium text-xl text-red-500">
+                            className="h-16 px-6 flex flex text-sm font-medium text-xl bg-transparent text-red-500 hover:bg-red-500 hover:text-white hover:border-transparent transition ease-in duration-200">
                             Add
 
                         </Link>
+                    </li>
+                    <li className="hover:bg-gray-100">
+                        <a
+                            href="/editReview"
+                            className="h-16 px-6 flex flex text-sm font-medium text-xl bg-transparent text-red-500 hover:bg-red-500 hover:text-white hover:border-transparent transition ease-in duration-200">
+                            Posts
+                        </a>
                     </li>
 
                 </ul>

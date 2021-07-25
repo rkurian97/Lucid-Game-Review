@@ -4,14 +4,18 @@ import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const Home = () => {
+
     // set initial form state
     const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
     const [addUser] = useMutation(ADD_USER);
     
+    // Watches for changes in form and resets state
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setUserFormData({ ...userFormData, [name]: value });
     };
+
+    // Uses form data to creat a user then sign them in
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
@@ -24,6 +28,7 @@ const Home = () => {
         } catch (err) {
             console.error(err);
         }
+        //reset form data on submit
         setUserFormData({
             username: '',
             email: '',

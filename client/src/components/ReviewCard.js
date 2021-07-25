@@ -6,7 +6,7 @@ import { DELETE_REVIEW } from "../utils/mutations";
 
 import Auth from '../utils/auth';
 
-const ReviewCard = ({ gameTitle, reviewText, username, videoGameId, rating, createdAt, profile, id, refetch }) => {
+const ReviewCard = ({ gameTitle, reviewText, username, videoGameId, rating, createdAt, profile, id, refetch, refetch2 }) => {
     const [removeReview] = useMutation(DELETE_REVIEW);
 
     const deleteReview = async () => {
@@ -17,12 +17,13 @@ const ReviewCard = ({ gameTitle, reviewText, username, videoGameId, rating, crea
         }
 
         try {
-            //removing Review from Database
+            // removing Review from Database
             await removeReview({
                 variables: { reviewID: id }
             });
-            //Trying to loop through user reviews in user data from useQuery and change it causing parent component to rerender. 
+            // using refetch to rerender parent component
             refetch();
+            refetch2();
         } catch (err) {
             console.error(err);
         }
@@ -51,7 +52,7 @@ const ReviewCard = ({ gameTitle, reviewText, username, videoGameId, rating, crea
             )}
 
             <img
-                className="rounded-lg w-8/12"
+                className=" ml-auto mr-auto rounded-lg w-96"
                 src={videoGameId}
                 alt="game"
             />
@@ -73,8 +74,8 @@ const ReviewCard = ({ gameTitle, reviewText, username, videoGameId, rating, crea
 
             {
                 profile && (
-                    <div className='mt-3 self-auto'>
-                        <button onClick={deleteReview} className="uppercase p-3 flex items-center bg-red-500 text-blue-50 max-w-max shadow-sm hover:shadow-lg rounded-full w-12 h-12 ">
+                    <div className='mt-3 flex justify-center'>
+                        <button onClick={deleteReview} className="py-2 px-4 bg-transparent text-red-600 font-semibold border border-red-600 rounded hover:bg-red-600 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0">
                             <svg width="32" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32" style={{ transform: "rotate(360deg)" }}>
                                 <path d="M12 12h2v12h-2z" fill="currentColor"></path><path d="M18 12h2v12h-2z" fill="currentColor"></path>
                                 <path d="M4 6v2h2v20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8h2V6zm4 22V8h16v20z" fill="currentColor"></path>

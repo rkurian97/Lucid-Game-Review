@@ -8,18 +8,20 @@ import SocialSideMenu from "../components/SocialSideMenu";
 
 const AddFriends = () => {
 
+    // renaming the query variables as 2 queries are used in this component, getting refetch again to pass into child component
     const { data: data2, refetch } = useQuery(QUERY_MY_FRIENDS);
     const userData = data2?.me.friends || {};
 
     const [searchInput, setSearchInput] = useState('');
-
+    //Lazy query to find user on button click
     const [search, {data}] = useLazyQuery(FIND_USER);
 
+    // Searches for user so that logged in user can follow
     const handleFormSubmit = async (e) => {
         e.preventDefault()
         const token = Auth.loggedIn() ? Auth.getToken() : null;
         if (!token) {
-            return false;
+            return false; 
         }
         search({
             variables: { username: searchInput },
@@ -28,7 +30,7 @@ const AddFriends = () => {
         
     }
 
-
+    //
     return (
         <div className="h-screen w-screen flex bg-gray-200">
             <SocialSideMenu />

@@ -5,13 +5,16 @@ import { QUERY_MY_FRIENDS } from "../utils/queries";
 import ReviewCard from "../components/ReviewCard";
 
 const FriendPosts = () => {
+    //query friends data
     const { data } = useQuery(QUERY_MY_FRIENDS);
-    console.log(data)
+
     const userData = data?.me.friends || {};
-    console.log(userData)
+
+    //rerender page on mount 
     useEffect(() => {
     }, [])
 
+    // if userData has an element in it, then the user has friends. So for each friend render a review card for all their reviews. 
     return (
         <div className="h-screen w-screen flex bg-gray-200">
             <SocialSideMenu />

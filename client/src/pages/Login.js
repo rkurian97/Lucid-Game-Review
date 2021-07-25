@@ -5,15 +5,18 @@ import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-	const [userFormData, setUserFormData] = useState({ email: '', password: '' });
 
+	//creating state for userForm data
+	const [userFormData, setUserFormData] = useState({ email: '', password: '' });
 	const [login] = useMutation(LOGIN_USER);
 
+	// Watches for changes in form and changes userForm state based on Change
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
 		setUserFormData({ ...userFormData, [name]: value });
 	};
 
+	// On submit takes user form state and Uses to perform login
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 		try {

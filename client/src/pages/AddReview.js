@@ -5,24 +5,33 @@ import { ADD_REVIEW } from '../utils/mutations';
 import { QUERY_VIDEOGAMES } from "../utils/queries";
 
 import Auth from '../utils/auth';
+import { withRouter } from "react-router-dom";
 
 const AddReview = () => {
+    //review form data
     const [reviewFormData, setReviewFormData] = useState({ gameTitle: '', reviewText: '', rating: '' });
     const [addReview] = useMutation(ADD_REVIEW);
+
+    //State for if the videogame is selected. They cannot post a form unless the video game is selected
     const [selectedVideoGame, setSelectedVideoGame]= useState('')
+
+    //state for search input and lazy query to query off button click
     const [searchInput, setSearchInput] = useState('');
     const [search, {data}] = useLazyQuery(QUERY_VIDEOGAMES);
 
+    //watches for changes in form to change search state
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setReviewFormData({ ...reviewFormData, [name]: value });
     };
 
+    // Seperate watch for change specifically for the rating since it needs to be parsed into Int
     const handleNumberChange = (event) => {
         const { name, value } = event.target;
         setReviewFormData({ ...reviewFormData, [name]: parseInt(value) });
     };
 
+    //function that queries the third party api for video game pictures
     const handleVideoGameQuery= async (e)=>{
         e.preventDefault()
         search({
@@ -34,11 +43,13 @@ const AddReview = () => {
         }
     }
 
+    // If a video game is selected than the state will change and the submit button will appear
     const handleImageClick= async (e)=>{
         await setSelectedVideoGame(e.target.src)
         console.log(selectedVideoGame)
     }
 
+    // on form submit Add a Review to the logged in user
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -138,4 +149,4 @@ const AddReview = () => {
     );
 };
 
-export default AddReview;
+export default withRouter(AddReview);
