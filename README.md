@@ -18,7 +18,7 @@ Lucid Game Review is a Video Game review blogg with social networking features. 
 https://lucid-game-review.herokuapp.com/
 
 ##
-![alt text](./client/public/images/readmeIMG.png)
+![alt text](./readmeIMG.png)
 
 ## Contribution
 Made by Rohith Kurian. 
