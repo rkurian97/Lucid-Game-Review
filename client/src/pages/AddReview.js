@@ -94,7 +94,7 @@ const AddReview = () => {
                 </div>
                 <div>
                    { 
-                    data?.videogames &&  <img alt='video game query' className="mt-5 mr-auto ml-auto rounded-xl" src={data.videogames.image} onClick={handleImageClick}></img>
+                    data?.videogames &&  <img alt='video game query' className="mt-5 mr-auto ml-auto rounded-xl " src={data.videogames.image} onClick={handleImageClick}></img>
                    }
                 </div>
             </div>
@@ -137,7 +137,7 @@ const AddReview = () => {
 
                             <div className="flex p-1">
                                {
-                                   selectedVideoGame && <button type="submit" className="p-3 bg-gray-800 text-white hover:bg-blue-900">Submit</button>
+                                   selectedVideoGame && <button type="submit" className="py-2 px-4 bg-transparent text-gray-800 font-semibold border border-gray-800 rounded hover:bg-gray-800 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0">Submit</button>
                                } 
                             </div>
                         </form>
