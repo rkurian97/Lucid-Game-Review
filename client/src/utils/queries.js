@@ -66,6 +66,7 @@ export const QUERY_MY_FRIENDS = gql`
           createdAt
           gameTitle
           videoGameId
+          rating
         }
       }
       friendCount

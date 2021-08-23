@@ -2,12 +2,13 @@ import React, {useState} from "react";
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { Link } from "react-router-dom";
 
 const Home = () => {
 
     // set initial form state
     const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
-    const [addUser] = useMutation(ADD_USER);
+    const [addUser, {error}] = useMutation(ADD_USER);
     
     // Watches for changes in form and resets state
     const handleInputChange = (event) => {
@@ -15,7 +16,7 @@ const Home = () => {
         setUserFormData({ ...userFormData, [name]: value });
     };
 
-    // Uses form data to creat a user then sign them in
+    // Uses form data to create a user then sign them in
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
@@ -101,11 +102,22 @@ const Home = () => {
                                     Sign Up
                                 </button>
                             </div>
+
+                            {
+								error && <p className='text-center text-sm text-red-600 mb-2'>{error.message}</p>
+							}
+
                             <hr className="mb-6 border-t" />
+                            <div className="text-center">
+								<Link
+									className="inline-block text-sm text-red-600 align-baseline hover:text-red-700"
+									to="/login"
+								>
+									Back to Login
+								</Link>
+							</div>
                         </form>
                     </div>
-
-
                     <div
                         className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-r-lg"
                         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1614294149010-950b698f72c0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y29udHJvbGxlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60')" }}

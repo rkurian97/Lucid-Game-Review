@@ -6,7 +6,9 @@ import ReviewCard from "../components/ReviewCard";
 
 const EditReview = () => {
     //Query User and we will pass refetch as prop into child component to trigger a rerender from child component if needed
-    const {loading, data, refetch } = useQuery(QUERY_ME);
+    const {loading, data, refetch } = useQuery(QUERY_ME, {
+        fetchPolicy: 'no-cache'
+    });
 
     //use effect to rerender the page on mount 
     useEffect(() => {
@@ -21,7 +23,6 @@ const EditReview = () => {
         <div className="h-screen bg-gray-200 flex">
 
             <ReviewSideMenu />
-
             <div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 bg-gray-200">
                     {
@@ -43,6 +44,7 @@ const EditReview = () => {
                     }
                 </div>
             </div>
+
         </div>
     );
 };

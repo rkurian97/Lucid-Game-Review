@@ -8,7 +8,7 @@ const Login = () => {
 
 	//creating state for userForm data
 	const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-	const [login] = useMutation(LOGIN_USER);
+	const [login, { error }] = useMutation(LOGIN_USER);
 
 	// Watches for changes in form and changes userForm state based on Change
 	const handleInputChange = (event) => {
@@ -90,6 +90,11 @@ const Login = () => {
 									Sign In
 								</button>
 							</div>
+
+							{
+								error && <p className='text-center text-sm text-red-600 mb-2'>{error.message}</p>
+							}
+
 							<hr className="mb-6 border-t" />
 							<div className="text-center">
 								<Link

@@ -6,8 +6,11 @@ import { QUERY_ALL_REVIEWS } from "../utils/queries";
 
 function Home (){
     //query all reviews from database
-    const { loading, data} = useQuery(QUERY_ALL_REVIEWS)
+    const { loading, data} = useQuery(QUERY_ALL_REVIEWS, {
+        fetchPolicy: 'no-cache'
+    });
     
+    console.log("hit")
     //use effect to rerender the page on mount 
     if(data){
         console.log(data)
