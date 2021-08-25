@@ -51,6 +51,20 @@ export const DELETE_REVIEW = gql`
     }
 `
 
+export const UPDATE_REVIEW = gql`
+    mutation updateReview($reviewID: ID!, $gameTitle:String!, $reviewText: String!, $rating: Int!) {
+        updateReview(reviewID: $reviewID, gameTitle: $gameTitle, reviewText:$reviewText,  rating:$rating) {
+            _id
+        reviewText
+        videoGameId
+        rating
+        username
+        createdAt
+        gameTitle
+        }
+    }
+`
+
 export const ADD_FRIEND = gql`
     mutation addFriend($friendId: ID!) {
         addFriend(friendId: $friendId) {

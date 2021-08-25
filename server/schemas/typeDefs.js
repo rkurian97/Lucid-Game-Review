@@ -54,7 +54,7 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
         addReview(gameTitle: String, reviewText: String!, videoGameId: String!, rating: Int!): Review
-        updateReview(reviewID: ID, reviewText: String!, rating: Int!): Review
+        updateReview(reviewID: ID, gameTitle: String!, reviewText: String!, rating: Int!): Review
         deleteReview(reviewID: ID): Review
         addComment(reviewID: ID!, commentBody: String!): Review
         updateComment(reviewID: ID!, commentID: ID!, commentBody: String!): Review

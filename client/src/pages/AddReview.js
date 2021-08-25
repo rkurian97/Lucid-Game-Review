@@ -21,7 +21,7 @@ const AddReview = () => {
     const [searchInput, setSearchInput] = useState('');
     const [search, { data }] = useLazyQuery(QUERY_VIDEOGAMES);
 
-    //watches for changes in form to change search state
+    //watches for changes in form for title and content to change state
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setReviewFormData({ ...reviewFormData, [name]: value });
@@ -32,7 +32,7 @@ const AddReview = () => {
         const { name, value } = event.target;
         setReviewFormData({ ...reviewFormData, [name]: parseInt(value) });
     };
-
+    
     //function that queries the third party api for video game pictures
     const handleVideoGameQuery = async (e) => {
         e.preventDefault()

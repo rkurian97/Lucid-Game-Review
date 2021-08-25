@@ -4,7 +4,7 @@ const ReviewCard = ({ gameTitle, reviewText, username, videoGameId, rating, crea
 
     return (
         //Parent Div
-        <div className="mt-4 ml-4 mb-5 md:p-8 p-2 bg-white max-h rounded-lg" >
+        <div className="mt-4 ml-4 mb-5 mr-4 md:p-8 p-2 bg-white max-h rounded-lg" >
 
 
             <div className="flex items-center space-x-2 mb-5">

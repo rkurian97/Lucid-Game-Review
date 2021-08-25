@@ -156,7 +156,7 @@ const Nav = () => {
                   </>
                 ) : (
                   <>
-                    <Link to="/login" className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Login</Link>
+                    <Link to="/login" className="text-center text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Login</Link>
                   </>
                 )}
 
