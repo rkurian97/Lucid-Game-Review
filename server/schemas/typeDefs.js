@@ -29,8 +29,9 @@ const typeDefs = gql`
         createdAt: String
         username: String
     }
-    
+
     type VideoGame{
+        name: String
         image: String
     }
 
@@ -46,7 +47,7 @@ const typeDefs = gql`
         reviews(username: String): [Review]
         review(_id: ID!): Review
         allreviews: [Review]
-        videogames(query: String): VideoGame
+        videogames(query: String): [VideoGame]
     }
 
     type Mutation {

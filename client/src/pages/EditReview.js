@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useQuery } from '@apollo/react-hooks';
 import ReviewSideMenu from "../components/ReviewSideMenu";
 import { QUERY_ME } from "../utils/queries";
-import ReviewCard from "../components/ReviewCard";
+import EditReviewCard from "../components/EditReviewCard";
 
 const EditReview = () => {
     //Query User and we will pass refetch as prop into child component to trigger a rerender from child component if needed
@@ -28,7 +28,7 @@ const EditReview = () => {
                     {
                         data && data.me.reviews.map(
                             (review, _index) =>
-                                <ReviewCard
+                                <EditReviewCard
                                     key={_index}
                                     gameTitle={review.gameTitle}
                                     reviewText={review.reviewText}
@@ -36,7 +36,6 @@ const EditReview = () => {
                                     videoGameId={review.videoGameId}
                                     rating={review.rating}
                                     createdAt={review.createdAt}
-                                    profile={true}
                                     id={review._id}
                                     refetch={refetch}
                                 />

@@ -48,9 +48,22 @@ const resolvers = {
       // USing this query to hit API from the backend, because on front end confronted cors policy errors
       videogames: async (parent, {query})=>{
         
-        const response = await axios.get(`https://api.rawg.io/api/games/${query}?key=${process.env.API_KEY}`)
-        let obj={image: response.data.background_image}
-        return(obj)
+        const response = await axios.get(`https://api.rawg.io/api/games?key=${process.env.API_KEY}&search=${query}&search_exact`)
+        
+        // let obj={image: response.data.background_image}
+        // return(obj)
+        results=[];
+        
+        for (const game of response.data.results){
+          if (game.background_image){
+            results.push({
+              name: game.name,
+              image: game.background_image
+            })
+          }
+        }
+        
+        return results
       }
     },
   

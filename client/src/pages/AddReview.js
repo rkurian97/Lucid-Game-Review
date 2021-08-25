@@ -1,23 +1,25 @@
 import React, { useState } from "react";
-import { useMutation, useLazyQuery} from '@apollo/react-hooks';
+import { useMutation, useLazyQuery } from '@apollo/react-hooks';
 import ReviewSideMenu from "../components/ReviewSideMenu";
 import { ADD_REVIEW } from '../utils/mutations';
 import { QUERY_VIDEOGAMES } from "../utils/queries";
 
 import Auth from '../utils/auth';
-import { withRouter } from "react-router-dom";
 
 const AddReview = () => {
     //review form data
     const [reviewFormData, setReviewFormData] = useState({ gameTitle: '', reviewText: '', rating: '' });
     const [addReview] = useMutation(ADD_REVIEW);
 
+    //alert state
+    const [showAlert, setShowAlert] = useState(false);
+
     //State for if the videogame is selected. They cannot post a form unless the video game is selected
-    const [selectedVideoGame, setSelectedVideoGame]= useState('')
+    const [selectedVideoGame, setSelectedVideoGame] = useState('')
 
     //state for search input and lazy query to query off button click
     const [searchInput, setSearchInput] = useState('');
-    const [search, {data}] = useLazyQuery(QUERY_VIDEOGAMES);
+    const [search, { data }] = useLazyQuery(QUERY_VIDEOGAMES);
 
     //watches for changes in form to change search state
     const handleInputChange = (event) => {
@@ -32,21 +34,20 @@ const AddReview = () => {
     };
 
     //function that queries the third party api for video game pictures
-    const handleVideoGameQuery= async (e)=>{
+    const handleVideoGameQuery = async (e) => {
         e.preventDefault()
         search({
             variables: { query: searchInput },
             suspend: false
         });
-        if(data){
+        if (data) {
             console.log(data)
         }
     }
 
     // If a video game is selected than the state will change and the submit button will appear
-    const handleImageClick= async (e)=>{
-        await setSelectedVideoGame(e.target.src)
-        console.log(selectedVideoGame)
+    const handleImageClick = (e) => {
+        setSelectedVideoGame(e.target.src)
     }
 
     // on form submit Add a Review to the logged in user
@@ -61,6 +62,7 @@ const AddReview = () => {
             await addReview({
                 variables: { ...reviewFormData, videoGameId: selectedVideoGame },
             });
+            setShowAlert(true)
             return
         } catch (err) {
             console.error(err);
@@ -73,12 +75,31 @@ const AddReview = () => {
         setSelectedVideoGame('');
     };
 
+
     return (
         <div className="h-screen w-screen flex bg-gray-200">
-            <ReviewSideMenu/>
+            <ReviewSideMenu />
             <div className='w-2/5 mr-auto ml-auto full'>
+
+                {
+                    showAlert &&
+                    <div className="text-white px-6 py-4 border-0 rounded relative mb-4 bg-gray-800 mt-5">
+                        <span className="text-xl inline-block mr-5 align-middle">
+                            <i className="fas fa-bell" />
+                        </span>
+                        <span className="inline-block align-middle mr-8">
+                            <b className="capitalize">Success!</b> Your post has been submitted
+                        </span>
+                        <button onclick={() => setShowAlert(false)} className="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
+                            <span>×</span>
+                        </button>
+                    </div>
+
+                }
+
+
                 <div>
-                    <form onSubmit={handleVideoGameQuery}className="h-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative mt-3 ">
+                    <form onSubmit={handleVideoGameQuery} className="h-10 pl-3 pr-2 bg-white border rounded-full flex justify-between items-center relative mt-3 ">
                         <input
                             onChange={(e) => setSearchInput(e.target.value)}
                             type="text" placeholder="Search"
@@ -92,10 +113,22 @@ const AddReview = () => {
                         </button>
                     </form>
                 </div>
-                <div>
-                   { 
-                    data?.videogames &&  <img alt='video game query' className="mt-5 mr-auto ml-auto rounded-xl " src={data.videogames.image} onClick={handleImageClick}></img>
-                   }
+                
+                <div className="grid grid-cols-4 gap-4 mt-4 resultBox">
+                    {
+                        data?.videogames && data.videogames.map(
+                            (videoGame, _index) =>
+                                <div key={_index} className='focus:ring-blue-600'>
+                                    <img
+                                        alt='video game query'
+                                        className={`rounded-xl max-h-40 ${selectedVideoGame===videoGame.image ? "border-solid border-4 border-red-400" : ""}`}
+                                        src={videoGame.image}
+                                        onClick={handleImageClick}>
+                                    </img>
+                                    <p className='font-semibold text-gray-900'>{videoGame.name}</p>
+                                </div>
+                        )
+                    }
                 </div>
             </div>
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-5">
@@ -136,9 +169,9 @@ const AddReview = () => {
                             </div>
 
                             <div className="flex p-1">
-                               {
-                                   selectedVideoGame && <button type="submit" className="py-2 px-4 bg-transparent text-gray-800 font-semibold border border-gray-800 rounded hover:bg-gray-800 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0">Submit</button>
-                               } 
+                                {
+                                    selectedVideoGame && <button type="submit" className="py-2 px-4 bg-transparent text-gray-800 font-semibold border border-gray-800 rounded hover:bg-gray-800 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0">Submit</button>
+                                }
                             </div>
                         </form>
                     </div>
@@ -149,4 +182,4 @@ const AddReview = () => {
     );
 };
 
-export default withRouter(AddReview);
+export default AddReview;

@@ -24,16 +24,16 @@ const Login = () => {
 			const { data } = await login({
 				variables: { ...userFormData }
 			});
-			console.log('hit')
+
 			Auth.login(data.login.token);
+
+			setUserFormData({
+				email: '',
+				password: '',
+			});
 		} catch (err) {
 			console.error(err);
 		}
-
-		setUserFormData({
-			email: '',
-			password: '',
-		});
 	};
 
 	return (
