@@ -12,7 +12,7 @@ const EditReviewCard = ({ gameTitle, reviewText, username, videoGameId, rating, 
 
     const [editReviewMode, setEditReviewMode] = useState(false)
 
-    const [editReviewFormData, setEditReviewFormData] = useState({ gameTitle: '', reviewText: '', rating: '' });
+    const [editReviewFormData, setEditReviewFormData] = useState({ gameTitle: gameTitle, reviewText: reviewText, rating: rating });
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
